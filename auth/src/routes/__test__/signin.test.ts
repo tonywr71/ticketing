@@ -9,6 +9,7 @@ it('fails when a email that does not exist is supplied', async () => {
       password: 'password'
     })
     .expect(400);
+
 });
 
 it('fails when an incorrect password is supplied', async () => {
