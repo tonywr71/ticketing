@@ -1,4 +1,4 @@
-name: tests-payments
+name: tests-tickets
 
 #triggers on pull request
 on:
@@ -9,5 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: cd payments && npm install && npm run test:ci
+      - run: cd tickets && npm install && npm run test:ci
+      
+  
 
