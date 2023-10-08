@@ -7,7 +7,7 @@ export default ({ req }) => {
     return axios.create({
       baseURL:
         //'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local',
-        'http://ticketing.miji.com/',
+        'http://ticketing.miji.com.au/',
       headers: req.headers,
     });
   } else {
