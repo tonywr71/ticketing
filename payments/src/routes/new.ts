@@ -36,11 +36,13 @@ router.post(
       throw new BadRequestError('Cannot pay for an cancelled order');
     }
 
+    console.log("Calling stripe...")
     const charge = await stripe.charges.create({
       currency: 'usd',
       amount: order.price * 100,
       source: token,
     });
+    console.log("Stripe call complete");
     const payment = Payment.build({
       orderId,
       stripeId: charge.id,
