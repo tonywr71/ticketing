@@ -9,6 +9,7 @@ export default ({ url, method, body, onSuccess }) => {
       setErrors(null);
       const response = await axios[method](url, { ...body, ...props }).catch((err)=>{
         console.log("axios error", err.message);
+        throw new Error(err.message);
       });
 
       if (onSuccess) {
