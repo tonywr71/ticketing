@@ -22,8 +22,12 @@ router.post(
   [body('token').not().isEmpty(), body('orderId').not().isEmpty()],
   validateRequest,
   async (req: Request, res: Response) => {
+    console.log("executing /api/payments post");
+
     const { token, orderId } = req.body;
 
+    console.log("token", token)
+    console.log("finding Order", orderId);
     const order = await Order.findById(orderId);
 
     if (!order) {
@@ -33,7 +37,7 @@ router.post(
       throw new NotAuthorizedError();
     }
     if (order.status === OrderStatus.Cancelled) {
-      throw new BadRequestError('Cannot pay for an cancelled order');
+      throw new BadRequestError('Cannot pay for a cancelled order');
     }
 
     console.log("Calling stripe...")
