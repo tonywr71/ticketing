@@ -11,12 +11,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: cd expiration && docker build -t tonywr/expiration .
+      - uses: actions/checkout@v3
       - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      - run: cd expiration && docker build -t tonywr/expiration .
       - run: docker push tonywr/expiration
       - uses: digitalocean/action-doctl@v2
         with:
