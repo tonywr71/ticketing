@@ -11,7 +11,8 @@ const OrderShow = ({ order, currentUser }) => {
     body: {
       orderId: order.id,
     },
-    onSuccess: () => Router.push('/orders'),
+    //onSuccess: () => Router.push('/orders'),
+    onSuccess: (payment) => console.log(payment),
   });
 
   useEffect(() => {
@@ -36,7 +37,10 @@ const OrderShow = ({ order, currentUser }) => {
     <div>
       Time left to pay: {timeLeft} seconds
       <StripeCheckout
-        token={({ id})=>console.log(id)}
+        token={({ id })=>{
+          console.log(id);
+          doRequest({ token: id });
+        }}
         stripeKey="pk_test_51NyDkgDlkH5fHZQI2rB49XVQ9GWVYWCB3Hj94IYZbTJyMbDv24FNSl4tqFaBIiCuD3RIG5R6IZttq6eROVJ5OmbL00xaZgKllg"
         amount={order.ticket.price * 100}
         email={currentUser.email}
