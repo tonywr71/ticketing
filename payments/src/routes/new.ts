@@ -17,7 +17,7 @@ import { natsWrapper } from '../nats-wrapper';
 const router = express.Router();
 
 router.get("/api/payments", async (req, res) => {
-  res.status(201).send({ stuff: "everything a-ok" });;
+  res.status(201).send({ stuff: "everything a-ok!" });;
 });
 
 router.post(
