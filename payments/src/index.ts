@@ -21,6 +21,9 @@ const start = async () => {
   if (!process.env.NATS_CLUSTER_ID) {
     throw new Error('NATS_CLUSTER_ID must be defined');
   }
+  if (!process.env.STRIPE_KEY) {
+    throw new Error("STRIPE_KEY must be defined");
+  }
 
   try {
     await natsWrapper.connect(
@@ -42,6 +45,8 @@ const start = async () => {
   } catch (err) {
     console.error(err);
   }
+
+  console.log("STRIPE_KEY", process.env.STRIPE_KEY);
 
   app.listen(3000, () => {
     console.log('Listening on port 3000!!!!!!!!');
